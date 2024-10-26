@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Tip Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #tip {
+            font-size: 24px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="tip">Loading a tip...</div>
+
+<script>
+    // Function to fetch tips from the JSON file
+    async function fetchTips() {
+        try {
+            const response = await fetch('tips.json');
+            const data = await response.json();
+            return data.tips;
+        } catch (error) {
+            console.error('Error fetching tips:', error);
+            return ["Error loading tips!"];
+        }
+    }
+
+    // Function to display a random tip
+    function displayRandomTip(tips) {
+        const randomIndex = Math.floor(Math.random() * tips.length);
+        document.getElementById('tip').innerText = tips[randomIndex];
+    }
+
+    // Main function to fetch tips and update every 20 seconds
+    async function main() {
+        const tips = await fetchTips();
+        displayRandomTip(tips); // Show one tip initially
+        setInterval(() => displayRandomTip(tips), 20000);
+    }
+
+    main(); // Run the main function
+</script>
+
+</body>
+</html>
