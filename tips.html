@@ -3,35 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Tip Generator</title>
+    <title>Random Tip Scroller</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Scroll container styling */
+        #scroll-container {
+            border: 3px solid black;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 80%; /* Adjust as needed */
+            margin: 20px auto; /* Center the container */
+            height: 50px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
             background-color: #f0f0f0;
         }
-        #tip {
+
+        /* Scroll text styling and animation */
+        #scroll-text {
+            white-space: nowrap;
             font-size: 24px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: scroll-animation 15s linear infinite;
+        }
+
+        /* Animation keyframes for the scrolling effect */
+        @keyframes scroll-animation {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
         }
     </style>
 </head>
 <body>
 
-<div id="tip">Loading a tip...</div>
+<div id="scroll-container">
+    <div id="scroll-text">Loading tip...</div>
+</div>
 
 <script>
-    // Function to fetch tips from the JSON file
+    // Function to fetch tips from tips.json
     async function fetchTips() {
         try {
             const response = await fetch('tips.json');
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
             const data = await response.json();
             return data.tips;
         } catch (error) {
@@ -41,19 +57,17 @@
     }
 
     // Function to display a random tip
-    function displayRandomTip(tips) {
-        const randomIndex = Math.floor(Math.random() * tips.length);
-        document.getElementById('tip').innerText = tips[randomIndex];
-    }
-
-    // Main function to fetch tips and update every 20 seconds
-    async function main() {
+    async function displayRandomTip() {
         const tips = await fetchTips();
-        displayRandomTip(tips); // Show one tip initially
-        setInterval(() => displayRandomTip(tips), 20000);
+        const randomIndex = Math.floor(Math.random() * tips.length);
+        document.getElementById('scroll-text').innerText = tips[randomIndex];
     }
 
-    main(); // Run the main function
+    // Display a new tip every 30 seconds
+    setInterval(displayRandomTip, 30000);
+
+    // Display the first tip immediately on page load
+    displayRandomTip();
 </script>
 
 </body>
