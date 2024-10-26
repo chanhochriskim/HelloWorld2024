@@ -3,7 +3,7 @@
 This is our submission for the Hello World 2024 Hackathon. 
 
 ## Features
-###Leveling system
+### Leveling system
 Top left corner keeps track of level
 ### Menu
 Information about Pokémon
