@@ -33,3 +33,33 @@ This is our submission for the Hello World 2024 Hackathon.
 - Possibly GIF
 - Look at moving shapes in background to make clouds move
 - Possibly different themes if time allows
+
+How to Implement The File.
+Steps to Create a package.json and Set Up Your Project
+Initialize a New React Project (if you haven’t already):
+
+Run this in the terminal to create a package.json and initialize a new React app:
+bash
+Copy code
+npx create-react-app my-app
+Move your existing App.js and App.css files into the src folder of this new project.
+Install Dependencies:
+
+If you already have a package.json, just run:
+bash
+Copy code
+npm install
+This will install all dependencies listed in package.json (such as React and ReactDOM) in a node_modules folder, allowing the app to run.
+Test and Run the Project:
+
+Start the app with:
+bash
+Copy code
+npm start
+This will run the React development server.
+Share the Project:
+
+Zip your project folder, including package.json and src files but excluding the node_modules folder, as it can be reinstalled using npm install.
+Your friend can unzip the folder, navigate to the project directory, run npm install to get dependencies, and then npm start to launch the app.
+Summary
+The package.json file ensures that anyone can install the dependencies and run the project consistently. Let me know if you’d like more guidance on this process!
