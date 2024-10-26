@@ -8,7 +8,7 @@ This is our submission for the Hello World 2024 Hackathon.
 ### Menu
 - Information about Pokémon
 - How many chads, foods eaten, etc.
-###Different Pokémon
+### Different Pokémon
 - Images
 - Changes image/name when evolved
 - Buttons
